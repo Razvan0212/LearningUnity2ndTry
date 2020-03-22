@@ -2,6 +2,7 @@
 
 public class PlayerMovement : MonoBehaviour
 {
+    public Transform player;
     public Rigidbody rb;
     public float forwardForce = 2000f;
     public float sideForce = 500f;
@@ -25,5 +26,8 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.AddForce(-sideForce * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
         }
+
+        if (player.position.y <= 0.9)
+            FindObjectOfType<GameManager>().EndGame();
     }
 }
