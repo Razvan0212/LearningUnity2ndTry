@@ -15,19 +15,21 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        rb.AddForce(0, 0, forwardForce * Time.deltaTime);
+        if (!FindObjectOfType<GameManager>().GetState()) {
+            rb.AddForce(0, 0, forwardForce * Time.deltaTime);
 
-        if (Input.GetKey("d"))
-        {
-            rb.AddForce(sideForce * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
+            if (Input.GetKey("d"))
+            {
+                rb.AddForce(sideForce * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
+            }
+
+            if (Input.GetKey("a"))
+            {
+                rb.AddForce(-sideForce * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
+            }
+
+            if (player.position.y <= 0.9)
+                FindObjectOfType<GameManager>().EndGame();
         }
-
-        if (Input.GetKey("a"))
-        {
-            rb.AddForce(-sideForce * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
-        }
-
-        if (player.position.y <= 0.9)
-            FindObjectOfType<GameManager>().EndGame();
     }
 }
