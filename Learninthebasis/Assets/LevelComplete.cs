@@ -3,7 +3,6 @@ using UnityEngine.SceneManagement;
 
 public class LevelComplete : MonoBehaviour
 {
-    public GameObject panel;
     public void Update()
     {
         if (Input.GetKey(KeyCode.Return) && this.isActiveAndEnabled)
